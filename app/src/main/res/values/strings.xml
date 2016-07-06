@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Wifi Key View</string>
+    <string name="menu_reload">Reload</string>
+    <string name="menu_about">About</string>
+</resources>
