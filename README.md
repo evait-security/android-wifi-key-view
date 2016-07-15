@@ -2,6 +2,8 @@
 
 No ads. No permissions. Clear style. Open source.
 
+https://play.google.com/store/apps/details?id=wkv.android.evait.com.wifikeyview
+
 This app will display all the wireless passwords and their associated name (SSID) stored on your android device. 
 Supported wireless profiles:
 - WEP (including key index)
