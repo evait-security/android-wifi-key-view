@@ -1,9 +1,6 @@
 package wkv.android.evait.com.wifikeyview;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
