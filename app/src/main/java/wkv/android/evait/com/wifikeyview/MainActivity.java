@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
-import android.widget.LinearLayout;
+import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,13 +19,18 @@ import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static boolean isSearchable = false;
     final private String TAG = "evait";
     final private boolean isDebug = false;
+
+    private Filter sFilter = null;
+    MenuItem myActionMenuItem = null;
 
     Activity context = null;
     ListView layout_content = null;
     WifiAdapter wifiAdapter = null;
     Thread rootThread = null;
+    private SearchView searchView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         layout_content = (ListView) findViewById(R.id.listView);
 
-
         wifiAdapter = new WifiAdapter(context);
         ListClickListener listClickListener = new ListClickListener(context);
 
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         layout_content.setAdapter(wifiAdapter);
         layout_content.setOnItemClickListener(listClickListener);
         layout_content.setOnItemLongClickListener(listClickListener);
+
 
         startRootThread();
     }
@@ -169,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
                     //final String temp = content;
 
 
+
                 } catch (Exception e) {
                     Log.e(TAG, "IOException, " + e.getMessage());
                     result = -100;
@@ -196,6 +202,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        //for the search icon
+        myActionMenuItem = menu.findItem( R.id.action_search);
+        searchView = (SearchView) myActionMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchChangeListener(myActionMenuItem));
         return true;
     }
 
@@ -234,8 +245,37 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 if (value!=null && value.getSsid().length()>0 && value.getKey().length()>0)
                 wifiAdapter.add(value);
+                wifiAdapter.sort(new WifiComparator());
+                sFilter = wifiAdapter.getFilter();
                 wifiAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private class SearchChangeListener implements SearchView.OnQueryTextListener {
+        MenuItem myActionMenuItem = null;
+
+        public SearchChangeListener(MenuItem myActionMenuItem) {
+            this.myActionMenuItem = myActionMenuItem;
+        }
+
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+            if(!searchView.isIconified()){
+                searchView.setIconified(true);
+            }
+            myActionMenuItem.collapseActionView();
+            if(sFilter != null) {
+                sFilter.filter(query);
+            }
+            return true;
+    }
+        @Override
+        public boolean onQueryTextChange(final String newText) {
+            if(sFilter != null  && !searchView.isIconified()) {
+                sFilter.filter(newText);
+            }
+            return true;
+        }
     }
 }

@@ -3,4 +3,5 @@
     <string name="menu_reload">Reload</string>
     <string name="menu_about">About</string>
     <string name="text_waitForRoot">Wait for root Permissions...</string>
+    <string name="text_search">Search:</string>
 </resources>
