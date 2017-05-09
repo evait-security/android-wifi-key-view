@@ -20,8 +20,8 @@ import java.io.OutputStream;
 public class MainActivity extends AppCompatActivity {
 
     private static boolean isSearchable = false;
-    final private String TAG = "evait";
-    final private boolean isDebug = false;
+    final static public String TAG = "evait";
+    final static public boolean isDebug = true;
 
     private Filter sFilter = null;
     MenuItem myActionMenuItem = null;
