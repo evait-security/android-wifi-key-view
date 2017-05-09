@@ -28,5 +28,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:support-core-utils:25.2.0'
     compile 'com.google.zxing:core:3.3.0'
-    compile 'com.journeyapps:zxing-android-embedded:3.4.0'
+
 }
