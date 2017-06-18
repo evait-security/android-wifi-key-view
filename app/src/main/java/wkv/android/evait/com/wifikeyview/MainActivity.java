@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Filter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -74,7 +75,12 @@ public class MainActivity extends AppCompatActivity {
                     Process process = Runtime.getRuntime().exec("su");
                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                     OutputStream out = process.getOutputStream();
-                    String cmd = "cat /data/misc/wifi/wpa_supplicant.conf";
+                    // different OS version use different file to save wifi passes
+                    // e.g.
+                    // /data/misc/wifi/wpa_supplicant.conf
+                    // /data/misc/wifi/wpa_supplicant_wcn.conf
+                    // /data/misc/wifi/p2p_supplicant.conf
+                    String cmd = "cat /data/misc/wifi/*_supplicant*.conf";
                     out.write(cmd.getBytes());
                     out.flush();
                     out.close();
@@ -225,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setCancelable(true);
                 dialog.setContentView(R.layout.about_view);
-
+                ((TextView) dialog.findViewById(R.id.textViewVersionName)).setText(BuildConfig.VERSION_NAME);
                 dialog.show();
 
                 result = true;
