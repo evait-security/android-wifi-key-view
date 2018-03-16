@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Wifi Key View</string>
+    <string name="menu_reload">Aktualisieren</string>
+    <string name="menu_donate">Spenden</string>
+    <string name="menu_about">Über uns</string>
+    <string name="text_waitForRoot">Warten auf root Berechtigungen...</string>
+    <string name="text_search">Suche:</string>
+    <string name="text_version">Version: </string>
+    <string name="text_donate_title">Wir trinken gerne Bier.</string>
+    <string name="text_donate_content">So viel Bier, dass es knallt. Aber Bier gibt es nicht umsonst... noch nicht. Wir stellen dir die App frei zur Verfügung, da kann man ja mal nach einem Bier fragen, oder etwa nicht? ;)</string>
+    <string name="button_donate">Spenden</string>
+    <string name="error_qr_generate">QR-Code konnte nicht generiert werden</string>
+    <string name="error_qr_wpa_enterprise">WPA2-Enterprise wird vom QR-Code Reader möglicherweise nicht unterstützt</string>
+    <string-array name="array_donate">
+        <item name="button_bottle">Nur das Pfand</item>
+        <item name="button_bottle">Ein kaltes Dosenbier</item>
+        <item name="button_sixpack">Ein ganzer Sixer Bier</item>
+    </string-array>
+
+</resources>

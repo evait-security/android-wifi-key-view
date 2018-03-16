@@ -2,18 +2,27 @@ package wkv.android.evait.com.wifikeyview;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,11 +36,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler {
 
+    BillingProcessor bp;
     private static boolean isSearchable = false;
     final static public String TAG = "evait";
     final static public boolean isDebug = true;
+    final static private String InAppPubKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAowTgroHqoXfm5kxQMKsO6xIMB/GemcYR9BPkud+rXBXcvLX4NmkuxG1GRw9/XMrhD2KqzMNWJg6Mu7u+r7joUbbG664N7kLWPpwAb98N0pa9a/BqXY8al9dVgFAhjTElH9jAs3CXGGgbChy889Z6k+EOHEkU4WE1dTpSl7vil3hbGJDS3RNPlxaZpYmknHFVF4ObnflN3l+qmexrRUsNNjK+FuEwSWAR6WXu/l6PV6wDWEmuJnwKtNvkF3At4de0vfV5Oals76IE1jbxbmcNJCWYE6kkm+7vGk1AT6YfVq6utjg7ZERhlL/OGa3X+PRA9iOiRrDCCxxTUM/BEqxdfQIDAQAB\n\n";
 
     private Filter sFilter = null;
     MenuItem myActionMenuItem = null;
@@ -45,8 +56,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         context = this;
+        bp = new BillingProcessor(this, InAppPubKey, this);
+
         setContentView(R.layout.activity_main);
 
         layout_content = (ListView) findViewById(R.id.listView);
@@ -385,6 +397,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean result = false;
+        final Dialog dialog = new Dialog(context);
 
         switch (item.getItemId()){
             case R.id.menu_reload:
@@ -393,11 +406,22 @@ public class MainActivity extends AppCompatActivity {
                 result = true;
                 break;
             case R.id.menu_about:
-                final Dialog dialog = new Dialog(context);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setCancelable(true);
                 dialog.setContentView(R.layout.about_view);
                 ((TextView) dialog.findViewById(R.id.textViewVersionName)).setText(BuildConfig.VERSION_NAME);
+                dialog.show();
+
+                result = true;
+                break;
+
+            case R.id.menu_donate:
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(true);
+                dialog.setContentView(R.layout.donate_view);
+                ((Spinner) dialog.findViewById(R.id.spinner_donate)).setSelection(1);
+                Button btnDonate = (Button) dialog.findViewById(R.id.btn_donate);
+                btnDonate.setOnClickListener(new DonateButtonListener(dialog));
                 dialog.show();
 
                 result = true;
@@ -424,6 +448,41 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
+
+    }
+
+    @Override
+    public void onPurchaseHistoryRestored() {
+
+    }
+
+    @Override
+    public void onBillingError(int errorCode, @Nullable Throwable error) {
+
+    }
+
+    @Override
+    public void onBillingInitialized() {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (bp != null) {
+            bp.release();
+        }
+        super.onDestroy();
+    }
+
     private class SearchChangeListener implements SearchView.OnQueryTextListener {
         MenuItem myActionMenuItem = null;
 
@@ -448,6 +507,34 @@ public class MainActivity extends AppCompatActivity {
                 sFilter.filter(newText);
             }
             return true;
+        }
+    }
+
+    private class DonateButtonListener implements Button.OnClickListener {
+        private Dialog dialog;
+        public DonateButtonListener(Dialog dialog) {
+            this.dialog = dialog;
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = ((Spinner)dialog.findViewById(R.id.spinner_donate)).getSelectedItemPosition();
+            if (isDebug) {
+                Log.d(TAG, "selected donate: " +position);
+            }
+            switch (position){
+                case 0:
+                    bp.purchase(context, "donate_min");
+                    break;
+                case 2:
+                    bp.purchase(context, "donate_big");
+                    break;
+                case 1: // do not break, because donate_normal is the default value
+                default:
+                    bp.purchase(context, "donate_normal");
+                    break;
+            }
+            dialog.cancel();
         }
     }
 }

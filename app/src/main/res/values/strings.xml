@@ -1,10 +1,20 @@
 <resources>
     <string name="app_name">Wifi Key View</string>
     <string name="menu_reload">Reload</string>
+    <string name="menu_donate">Donate</string>
     <string name="menu_about">About</string>
     <string name="text_waitForRoot">Wait for root Permissions...</string>
     <string name="text_search">Search:</string>
+    <string name="text_version">Version: </string>
+    <string name="text_donate_title">We like drinking beer...</string>
+    <string name="text_donate_content">... Maybe more than we should. But beer isn\'t for free... at least not now. We made our app free to use for everyone, maybe you got some more beers for us?</string>
+    <string name="button_donate">donate</string>
     <string name="error_qr_generate">Failed to generate QR-Code</string>
     <string name="error_qr_wpa_enterprise">WPA2-Enterprise maybe not supported by the QR-Code reader</string>
+    <string-array name="array_donate">
+        <item name="button_bottle">A empty bootle of beer</item>
+        <item name="button_bottle">One bottle of cold beer</item>
+        <item name="button_sixpack">A whole sixpack of cold beer</item>
+    </string-array>
 
 </resources>

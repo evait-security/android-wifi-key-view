@@ -19,5 +19,5 @@
             </intent-filter>
         </activity>
     </application>
-
+    <uses-permission android:name="com.android.vending.BILLING" />
 </manifest>
