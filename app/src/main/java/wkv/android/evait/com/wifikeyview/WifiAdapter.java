@@ -1,7 +1,7 @@
 package wkv.android.evait.com.wifikeyview;
 
-import android.app.Activity;
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +16,17 @@ import java.util.Comparator;
  * Created by as on 05.07.2016.
  */
 public class WifiAdapter extends ArrayAdapter<WifiObject> {
-    Activity ctx;
+    AppCompatActivity ctx;
 
     public WifiAdapter(Context context, ArrayList<WifiObject> wifiO) {
         super(context, 0, wifiO);
-        this.ctx = (Activity) context;
+        this.ctx = (AppCompatActivity) context;
 
     }
 
     public WifiAdapter(Context context) {
         super(context, 0);
-        this.ctx = (Activity) context;
+        this.ctx = (AppCompatActivity) context;
     }
 
     @Override
@@ -82,9 +82,9 @@ public class WifiAdapter extends ArrayAdapter<WifiObject> {
     private class searchFilter extends Filter {
         ArrayList<WifiObject> org;
         WifiAdapter wiAdapter;
-        Activity ctx;
+        AppCompatActivity ctx;
 
-        public searchFilter(ArrayList<WifiObject> res, WifiAdapter wiAdapter, Activity ctx) {
+        public searchFilter(ArrayList<WifiObject> res, WifiAdapter wiAdapter, AppCompatActivity ctx) {
             org = res;
             this.wiAdapter = wiAdapter;
             this.ctx = ctx;

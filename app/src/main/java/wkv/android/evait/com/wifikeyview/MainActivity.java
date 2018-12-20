@@ -1,11 +1,11 @@
 package wkv.android.evait.com.wifikeyview;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
     private Filter sFilter = null;
     MenuItem myActionMenuItem = null;
 
-    Activity context = null;
+    AppCompatActivity context = null;
     ListView layout_content = null;
     WifiAdapter wifiAdapter = null;
     Thread rootThread = null;
@@ -373,7 +373,7 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
 
         //for the search icon
         myActionMenuItem = menu.findItem(R.id.action_search);
-        searchView = (SearchView) myActionMenuItem.getActionView();
+        searchView = (SearchView) MenuItemCompat.getActionView(myActionMenuItem);
         searchView.setOnQueryTextListener(new SearchChangeListener(myActionMenuItem));
         return true;
     }
@@ -473,7 +473,7 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
             if (!searchView.isIconified()) {
                 searchView.setIconified(true);
             }
-            myActionMenuItem.collapseActionView();
+            MenuItemCompat.collapseActionView(myActionMenuItem);
             if (sFilter != null) {
                 sFilter.filter(query);
             }

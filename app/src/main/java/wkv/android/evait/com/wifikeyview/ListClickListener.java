@@ -1,11 +1,11 @@
 package wkv.android.evait.com.wifikeyview;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -225,11 +225,11 @@ public class ListClickListener implements OnItemClickListener, OnItemLongClickLi
 
         // get available height and width
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity) ctx).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        ((AppCompatActivity) ctx).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
 
-        // get the smalest vale
+        // get the smallest value
         int result = width;
         if (height < width) {
             result = height;
