@@ -29,12 +29,13 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:support-core-utils:28.0.0'
+    implementation 'androidx.annotation:annotation:1.0.1'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'androidx.core:core:1.1.0-alpha03'
 
     implementation 'com.google.zxing:core:3.3.3'
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
 
     testImplementation 'junit:junit:4.13-beta-1'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
 }
