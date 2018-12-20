@@ -1,32 +1,44 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-    }
-    compileSdkVersion 25
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
     defaultConfig {
         applicationId "wkv.android.evait.com.wifikeyview"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 28
         versionCode 9
         versionName '1.6'
     }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            zipAlignEnabled true
+        }
     }
-    productFlavors {
+
+    compileOptions {
+        encoding = 'UTF-8'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:support-core-utils:25.3.1'
-    compile 'com.google.zxing:core:3.3.0'
-    compile 'com.anjlab.android.iab.v3:library:1.0.44'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
+    implementation 'androidx.annotation:annotation:1.0.1'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'androidx.core:core:1.1.0-alpha03'
+
+    implementation 'com.google.zxing:core:3.3.3'
+    implementation 'com.anjlab.android.iab.v3:library:1.0.44'
+
+    testImplementation 'junit:junit:4.13-beta-1'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
 }
