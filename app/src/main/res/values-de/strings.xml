@@ -3,14 +3,22 @@
     <string name="menu_reload">Aktualisieren</string>
     <string name="menu_donate">Spenden</string>
     <string name="menu_about">Über uns</string>
-    <string name="text_waitForRoot">Warten auf root Berechtigungen...</string>
+    <string name="text_waitForRoot">Warten auf root berechtigungen…</string>
     <string name="text_search">Suche:</string>
     <string name="text_version">Version: </string>
     <string name="text_donate_title">Wer trinkt nicht gern Bier?</string>
-    <string name="text_donate_content">Auch wir sind da keine Außnahme. Diese App wird immer kostenlos, werbefrei und Open Source bleiben. Spenden Sie den Entwicklern als Dankeschön ein Bier oder gleich ein ganzes Six-Pack! Wir freuen uns sicher und versorgen Sie weiterhin mit Updates und verbesserten Funktionen.</string>
+    <string name="text_donate_content">
+        Auch wir sind da keine Außnahme.
+        Diese App wird immer kostenlos, werbefrei und open-source bleiben.
+        Spenden Sie den Entwicklern als Dankeschön ein Bier oder gleich ein ganzes Six-Pack!
+        Wir freuen uns sicher und versorgen Sie weiterhin mit Updates und verbesserten Funktionen.
+    </string>
     <string name="button_donate">Spenden</string>
     <string name="error_qr_generate">QR-Code konnte nicht generiert werden</string>
     <string name="error_qr_wpa_enterprise">WPA2-Enterprise wird vom QR-Code Reader möglicherweise nicht unterstützt</string>
+    <string name="_802_1x">802.1x</string>
+    <string name="wpa_wpa2">WPA/WPA2</string>
+    <string name="powered_by">powered by</string>
     <string-array name="array_donate">
         <item name="button_bottle">Nur das Pfand</item>
         <item name="button_bottle">Ein kaltes Dosenbier</item>

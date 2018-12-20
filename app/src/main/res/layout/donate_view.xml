@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal" android:layout_width="fill_parent"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center_vertical|center_horizontal">
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:weightSum="1">
 
         <TextView
+            android:id="@+id/space"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="                                          "
             android:paddingTop="@dimen/activity_vertical_margin"
-            android:id="@+id/space"
+            android:text="                                          "
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:visibility="invisible"
             tools:ignore="Suspicious0dp" />
 
@@ -50,9 +51,7 @@
                 android:id="@+id/spinner_donate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/array_donate"
-
-                />
+                android:entries="@array/array_donate" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,15 +61,12 @@
 
                 <Button
                     android:id="@+id/btn_donate"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/button_donate" />
 
-
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>

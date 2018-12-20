@@ -3,14 +3,21 @@
     <string name="menu_reload">Reload</string>
     <string name="menu_donate">Donate</string>
     <string name="menu_about">About</string>
-    <string name="text_waitForRoot">Wait for root Permissions...</string>
+    <string name="text_waitForRoot">Waiting for root permission…</string>
     <string name="text_search">Search:</string>
     <string name="text_version">Version: </string>
-    <string name="text_donate_title">Who does not like drinking beer?</string>
-    <string name="text_donate_content">We are no exception. This app will always be free, ad-free and open source. Donate the developers a beer or an entire six-pack as a thank you! We are sure that we will continue to provide you with updates and improved features.</string>
+    <string name="text_donate_title">Who doesn\'t like beer?</string>
+    <string name="text_donate_content">
+        We are no exception. This app will always be free, ad-free, and open-source.
+        Donate the developers a beer or an entire six-pack as a thank you!
+        We are sure that we will continue to provide you with updates and improved features.
+    </string>
     <string name="button_donate">donate</string>
     <string name="error_qr_generate">Failed to generate QR-Code</string>
-    <string name="error_qr_wpa_enterprise">WPA2-Enterprise maybe not supported by the QR-Code reader</string>
+    <string name="error_qr_wpa_enterprise">WPA2-Enterprise may not be supported by the QR-Code reader</string>
+    <string name="_802_1x">802.1x</string>
+    <string name="wpa_wpa2">WPA/WPA2</string>
+    <string name="powered_by">powered by</string>
     <string-array name="array_donate">
         <item name="button_bottle">Only deposit on cans</item>
         <item name="button_bottle">One bottle of cold beer</item>

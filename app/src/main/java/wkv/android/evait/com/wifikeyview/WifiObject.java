@@ -13,16 +13,16 @@ public class WifiObject {
     public static String TYP_WEP = "WEP";
     public static String TYP_WPA = "WPA/WPA2";
 
-    public WifiObject (){
+    public WifiObject() {
     }
 
-    public WifiObject (String ssid, String key){
+    public WifiObject(String ssid, String key) {
         this.ssid = ssid;
         this.key = key;
     }
 
     public String getSsid() {
-        if (ssid==null){
+        if (ssid == null) {
             return "";
         }
         return ssid;
@@ -33,7 +33,7 @@ public class WifiObject {
     }
 
     public String getKey() {
-        if (key==null){
+        if (key == null) {
             return "";
         }
         return key;
@@ -44,7 +44,7 @@ public class WifiObject {
     }
 
     public String getUser() {
-        if (user==null){
+        if (user == null) {
             return "";
         }
         return user;
@@ -55,7 +55,7 @@ public class WifiObject {
     }
 
     public String getTyp() {
-        if (typ==null){
+        if (typ == null) {
             return "";
         }
         return typ;
@@ -68,18 +68,18 @@ public class WifiObject {
     @Override
     public String toString() {
         String separator = System.getProperty("line.separator");
-        String result =  "";
-        result += "SSID: " +getSsid() + separator;
+        String result = "";
+        result += "SSID: " + getSsid() + separator;
 
-        if (getUser().length()>0) {
+        if (getUser().length() > 0) {
             if (getTyp().equals(WifiObject.TYP_ENTERPRISE)) {
                 result += "User: ";
             } else if (getTyp().equals(WifiObject.TYP_WEP)) {
                 result += "Keyindex: ";
             }
-            result += getUser() +separator;
+            result += getUser() + separator;
         }
-        result += "Key: " +getKey();
+        result += "Key: " + getKey();
         return result;
     }
 }
